@@ -1,4 +1,4 @@
-class StringCalculatorP2{
+
 // Function that add string numbers
 function strAddTwoArg(a, b) {
     var sum = 0;
@@ -57,8 +57,6 @@ function strAddMultArg() {
 
 }
 
-
-}
 
 
 

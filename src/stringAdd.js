@@ -6,7 +6,6 @@ function strAddMultArg() {
 
   if (arguments[0] != null) {
     if (arguments[1] != null || arguments.length === 1) {
-      //Extracting numbers from the string
       let twoDarry = [];
       for (let i = 0; i < arguments.length; i++) {
         if (arguments[i].match(strNum).map(Number).length > 1) {
@@ -15,11 +14,11 @@ function strAddMultArg() {
             c < arguments[i].match(strNum).map(Number).length;
             c++
           ) {
-            twoDarry[c] = arguments[i].match(strNum).map(Number);
-            numArray[c] = twoDarry[i][c]; /////split
+            twoDarry[c] = arguments[i].match(strNum).map(Number); //Extracting numbers from the string
+            numArray[c] = twoDarry[i][c]; ///Storing the 2D array into the existing 1D array
           }
         } else {
-          numArray[i] = arguments[i];
+          numArray[i] = Number(arguments[i]);
         }
       }
 
@@ -38,12 +37,14 @@ function strAddMultArg() {
         if (numArray[c] > 1000) {
           numArray[c] = 0;
         }
-        sum += Number(numArray[c]);
+        sum += numArray[c];
       }
     } else {
+      //if the second argument is null,sum = first argument
       sum = Number(arguments[0]);
     }
   } else {
+    //if the first argument is null,sum =second  argument
     sum = Number(arguments[1]);
   }
 

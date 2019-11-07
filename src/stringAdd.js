@@ -30,7 +30,6 @@ function strAddMultArg() {
       } catch (err) {
         return "Error:" + err;
       }
-      console.log(numArray);
       //Summing the arguments
       for (let c = 0; c < numArray.length; c++) {
         //Ignoring numbers that are greater than 1000

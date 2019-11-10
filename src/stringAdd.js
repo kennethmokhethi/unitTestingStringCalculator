@@ -2,7 +2,8 @@
 function strAddMultArg() {
   var sum = 0;
   var numArray = [];
-  var strNum = /-?[0-9]+/g;
+  var strNum = /((\[0-9])|(-?[0-9]+))/g;
+  // /([+-]?(\.\d+|\d+(\.\d+)?))/g
 
   if (arguments[0] != null) {
     if (arguments[1] != null || arguments.length === 1) {

@@ -3,21 +3,25 @@ function strAddMultArg() {
   let sum = 0;
   if (arguments.length == 2) {
     if (arguments[0] == null && arguments[1] != null) {
+      //if first argument is null return the second
       return Number(arguments[1]);
     } else if (arguments[0] != null && arguments[1] == null) {
+      //if second argument is null return the first
       return Number(arguments[0]);
     } else if (arguments[0] == null && arguments[1] == null) {
+      //if both are null,return zero
       return sum;
     }
   }
 
   if (checkNumber(arguments[0])) {
-    ///Calling the function that sum up numbers separeted by a number
+    //Calling the function that sum up numbers separeted by a number
     sum = summing_Nums_Separated_By_Num(arguments);
   } else {
     let numArray = [];
     //Calling the function that extract numbers only
     numArray = extract_Nums(arguments);
+
     //Error handling for negative numbers
     try {
       for (let c = 0; c < numArray.length; c++) {
@@ -26,6 +30,7 @@ function strAddMultArg() {
     } catch (err) {
       return "Error:" + err;
     }
+
     //Calling the function for summing the arguments
     sum = sumArg(numArray);
   }
@@ -33,17 +38,18 @@ function strAddMultArg() {
   return sum;
 }
 
+//Function that checks if numbers exist within sqaure brackets
 function checkNumber(input) {
-  let reg = /(?<=\[).\d?(?=\])/g; ///Extracting content inside square brackets
-  let sqbr = input.indexOf("["); ///Checking if an square brackets exits
+  let reg = /(?<=\[).\d?(?=\])/g; //Extracting content inside square brackets excluding the sqaure brackets
+  let sqbr = input.indexOf("["); //Checking if an square brackets exits
   if (sqbr > 0 && input != null) {
-    let numArr1 = input.match(reg);
+    let numArr1 = input.match(reg); //Stores content inside the sqaure brackets if exists
     if (numArr1 != null) {
       let numArr = input.match(reg).map(Number);
       let nonNum = numArr.indexOf("NaN");
       let sNum = numArr.indexOf("number");
       if (nonNum === false || sNum) {
-        ///All content in a array is a number
+        //All content in a array is a number
         return true;
       } else {
         return false;
@@ -67,6 +73,7 @@ function sumArg(Arr) {
   return sumAr;
 }
 
+//Function that return a sum of numbers separated by a number
 function summing_Nums_Separated_By_Num(arr) {
   let sum = 0;
   let numberString = arr[0].match(/(?<=\n).*/g)[0];
@@ -80,6 +87,7 @@ function summing_Nums_Separated_By_Num(arr) {
   return sum;
 }
 
+//Function that extract numbers only and stores them in a array
 function extract_Nums(arr) {
   var strNum = /((\[0-9])|(-?[0-9]+))/g;
   let numArray1 = [];

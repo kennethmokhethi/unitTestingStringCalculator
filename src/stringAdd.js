@@ -1,10 +1,5 @@
 //Function that accept multiple number of arguments
 function strAddMultArg() {
-  // let another=sb.match(/(?<=\[).\d?(?=\])/g) extract content inside brackets without square brackets
-
-  ///Extract content inside square brackets
-  // let stringNums = arguments[0].match(/\[\d*?\]/g).join("");
-  // let firstEleme = Number(stringNums[1]);
   let sum = 0;
   if (arguments.length == 2) {
     if (arguments[0] == null && arguments[1] != null) {
@@ -17,69 +12,31 @@ function strAddMultArg() {
   }
 
   if (checkNumber(arguments[0])) {
-    let numberString = arguments[0].match(/(?<=\n).*/g)[0];
-    let delimitersString = arguments[0].match(/(?<=\/\/).*?(?=\n)/g)[0];
-    let delimiter = delimitersString.match(/(?<=\[).*?(?=\])/g).join("");
-    let numberSplittingRegex = new RegExp(`[${delimiter}]`, "g");
-    let numberStringSplitByDelimiter = numberString.split(numberSplittingRegex);
-    sum = numberStringSplitByDelimiter
-      .map(x => Number(x))
-      .reduce((sum, n) => sum + n);
+    ///Calling the function that sum up numbers separeted by a number
+    sum = summing_Nums_Separated_By_Num(arguments);
   } else {
-    var numArray = [];
-    var strNum = /((\[0-9])|(-?[0-9]+))/g;
-    if (arguments[0] != null) {
-      if (arguments[1] != null || arguments.length === 1) {
-        let twoDarry = [];
-        for (let i = 0; i < arguments.length; i++) {
-          if (arguments[i].match(strNum).map(Number).length > 1) {
-            for (
-              let c = 0;
-              c < arguments[i].match(strNum).map(Number).length;
-              c++
-            ) {
-              twoDarry[c] = arguments[i].match(strNum).map(Number); //Extracting numbers from the string
-              numArray[c] = twoDarry[i][c]; ///Storing the 2D array into the existing 1D array
-            }
-          } else {
-            numArray[i] = Number(arguments[i]);
-          }
-        }
-
-        //Error handling for negative numbers
-        try {
-          for (let c = 0; c < numArray.length; c++) {
-            if (numArray[c] < 0) throw "number negative :" + numArray[c];
-          }
-        } catch (err) {
-          return "Error:" + err;
-        }
-        //Summing the arguments
-        for (let c = 0; c < numArray.length; c++) {
-          //Ignoring numbers that are greater than 1000
-          if (numArray[c] > 1000) {
-            numArray[c] = 0;
-          }
-          sum += numArray[c];
-        }
-      } else {
-        //if the second argument is null,sum = first argument
-        sum = Number(arguments[0]);
+    let numArray = [];
+    //Calling the function that extract numbers only
+    numArray = extract_Nums(arguments);
+    //Error handling for negative numbers
+    try {
+      for (let c = 0; c < numArray.length; c++) {
+        if (numArray[c] < 0) throw "number negative :" + numArray[c];
       }
-    } else {
-      //if the first argument is null,sum =second  argument
-      sum = Number(arguments[1]);
+    } catch (err) {
+      return "Error:" + err;
     }
+    //Calling the function for summing the arguments
+    sum = sumArg(numArray);
   }
 
   return sum;
 }
 
 function checkNumber(input) {
-  let reg = /(?<=\[).\d?(?=\])/g;
-  let sqbr = input.indexOf("[");
+  let reg = /(?<=\[).\d?(?=\])/g; ///Extracting content inside square brackets
+  let sqbr = input.indexOf("["); ///Checking if an square brackets exits
   if (sqbr > 0 && input != null) {
-    // let numArr = input.match(reg).map(Number);
     let numArr1 = input.match(reg);
     if (numArr1 != null) {
       let numArr = input.match(reg).map(Number);
@@ -97,5 +54,45 @@ function checkNumber(input) {
   }
 }
 
-sum = strAddMultArg("//[***]\n1***2***3");
-console.log(sum);
+///Summing the elements in the array
+function sumArg(Arr) {
+  let sumAr = 0;
+  for (let c = 0; c < Arr.length; c++) {
+    //Ignoring numbers that are greater than 1000
+    if (Arr[c] > 1000) {
+      Arr[c] = 0;
+    }
+    sumAr += Arr[c];
+  }
+  return sumAr;
+}
+
+function summing_Nums_Separated_By_Num(arr) {
+  let sum = 0;
+  let numberString = arr[0].match(/(?<=\n).*/g)[0];
+  let delimitersString = arr[0].match(/(?<=\/\/).*?(?=\n)/g)[0];
+  let delimiter = delimitersString.match(/(?<=\[).*?(?=\])/g).join("");
+  let numberSplittingRegex = new RegExp(`[${delimiter}]`, "g");
+  let numberStringSplitByDelimiter = numberString.split(numberSplittingRegex);
+  sum = numberStringSplitByDelimiter
+    .map(x => Number(x))
+    .reduce((sum, n) => sum + n);
+  return sum;
+}
+
+function extract_Nums(arr) {
+  var strNum = /((\[0-9])|(-?[0-9]+))/g;
+  let numArray1 = [];
+  let twoDarry = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].match(strNum).map(Number).length > 1) {
+      for (let c = 0; c < arr[i].match(strNum).map(Number).length; c++) {
+        twoDarry[c] = arr[i].match(strNum).map(Number); //Extracting numbers from the string
+        numArray1[c] = twoDarry[i][c]; ///Storing the 2D array into the existing 1D array
+      }
+    } else {
+      numArray1[i] = Number(arr[i]);
+    }
+  }
+  return numArray1;
+}

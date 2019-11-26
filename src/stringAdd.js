@@ -1,4 +1,4 @@
-//Function that accept multiple number of arguments
+//Main function.Function that accept multiple number of arguments
 function strAddMultArg() {
   let sum = 0;
   if (arguments.length == 2) {
@@ -38,7 +38,7 @@ function strAddMultArg() {
   return sum;
 }
 
-//Function that checks if numbers exist within sqaure brackets
+//Utility function1.Function that checks if numbers exist within sqaure brackets
 function checkNumber(input) {
   let reg = /(?<=\[).\d?(?=\])/g; //Extracting content inside square brackets excluding the sqaure brackets
   let sqbr = input.indexOf("["); //Checking if an square brackets exits
@@ -60,7 +60,7 @@ function checkNumber(input) {
   }
 }
 
-///Summing the elements in the array
+//Utility function 2.Summing the elements in the array
 function sumArg(Arr) {
   let sumAr = 0;
   for (let c = 0; c < Arr.length; c++) {
@@ -73,7 +73,7 @@ function sumArg(Arr) {
   return sumAr;
 }
 
-//Function that return a sum of numbers separated by a number
+//Utility function 3.Function that return a sum of numbers separated by a number
 function summing_Nums_Separated_By_Num(arr) {
   let sum = 0;
   let numberString = arr[0].match(/(?<=\n).*/g)[0];
@@ -87,7 +87,7 @@ function summing_Nums_Separated_By_Num(arr) {
   return sum;
 }
 
-//Function that extract numbers only and stores them in a array
+//Utility function 3.Function that extract numbers only and stores them in a array
 function extract_Nums(arr) {
   var strNum = /((\[0-9])|(-?[0-9]+))/g;
   let numArray1 = [];

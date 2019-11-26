@@ -1,5 +1,5 @@
 //Function that accept multiple number of arguments
-function strAddMultArg() {
+function signature() {
   let sum = 0;
   if (arguments.length == 2) {
     if (arguments[0] == null && arguments[1] != null) {

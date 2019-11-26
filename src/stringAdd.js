@@ -16,8 +16,6 @@ function strAddMultArg() {
     }
   }
 
-  // let t = typeof firstEleme;
-  // if (t === "number") {
   if (checkNumber(arguments[0])) {
     let numberString = arguments[0].match(/(?<=\n).*/g)[0];
     let delimitersString = arguments[0].match(/(?<=\/\/).*?(?=\n)/g)[0];
@@ -98,38 +96,6 @@ function checkNumber(input) {
     return false;
   }
 }
-
-// function checkForNull() {
-//   let sum = 0;
-//   let dg = arguments[0][0];
-//   let dg1 = arguments[0][1];
-//   if (arguments[0][0] == null && arguments[0][1] != null) {
-//     return Number(arguments[1]);
-//   } else if (arguments[0][0] != null && arguments[0][1] == null) {
-//     return Number(arguments[0]);
-//   }
-//   return sum;
-// }
-// let var1 = strAddMultArg("[***]\n1***2***3");
-// console.log(var1);
-
-// let var2 = strAddMultArg("//[2][3][u]\n1u52131");
-// console.log(var2);
-
-// var a = "23";
-// var b = "1005";
-// sum = strAddMultArg(a, b);
-// console.log(sum);
-
-// var a = null;
-// var b = null;
-// sum = strAddMultArg(a, b);
-// console.log(sum);
-
-// var a = "23";
-// var b = "10";
-// sum = strAddMultArg(a, b);
-// console.log(sum);
 
 sum = strAddMultArg("//[***]\n1***2***3");
 console.log(sum);

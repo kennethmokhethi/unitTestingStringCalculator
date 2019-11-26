@@ -1,20 +1,33 @@
 //Function that accept multiple number of arguments
 function strAddMultArg() {
-  ///Extract content inside square brackets
-  let stringNums = arguments[0].match(/\[\d*?\]/g).join("");
-  let firstEleme = Number(stringNums[1]);
+  // let another=sb.match(/(?<=\[).\d?(?=\])/g) extract content inside brackets without square brackets
 
-  if (typeof firstEleme === Number) {
+  ///Extract content inside square brackets
+  // let stringNums = arguments[0].match(/\[\d*?\]/g).join("");
+  // let firstEleme = Number(stringNums[1]);
+  let sum = 0;
+  if (arguments.length == 2) {
+    if (arguments[0] == null && arguments[1] != null) {
+      return Number(arguments[1]);
+    } else if (arguments[0] != null && arguments[1] == null) {
+      return Number(arguments[0]);
+    } else if (arguments[0] == null && arguments[1] == null) {
+      return sum;
+    }
+  }
+
+  // let t = typeof firstEleme;
+  // if (t === "number") {
+  if (checkNumber(arguments[0])) {
     let numberString = arguments[0].match(/(?<=\n).*/g)[0];
     let delimitersString = arguments[0].match(/(?<=\/\/).*?(?=\n)/g)[0];
     let delimiter = delimitersString.match(/(?<=\[).*?(?=\])/g).join("");
     let numberSplittingRegex = new RegExp(`[${delimiter}]`, "g");
     let numberStringSplitByDelimiter = numberString.split(numberSplittingRegex);
-    var sum = numberStringSplitByDelimiter
+    sum = numberStringSplitByDelimiter
       .map(x => Number(x))
       .reduce((sum, n) => sum + n);
   } else {
-    var sum = 0;
     var numArray = [];
     var strNum = /((\[0-9])|(-?[0-9]+))/g;
     if (arguments[0] != null) {
@@ -64,5 +77,59 @@ function strAddMultArg() {
   return sum;
 }
 
-let wh = strAddMultArg("//[2][3][u]\n1u52131");
-console.log(wh);
+function checkNumber(input) {
+  let reg = /(?<=\[).\d?(?=\])/g;
+  let sqbr = input.indexOf("[");
+  if (sqbr > 0 && input != null) {
+    // let numArr = input.match(reg).map(Number);
+    let numArr1 = input.match(reg);
+    if (numArr1 != null) {
+      let numArr = input.match(reg).map(Number);
+      let nonNum = numArr.indexOf("NaN");
+      let sNum = numArr.indexOf("number");
+      if (nonNum === false || sNum) {
+        ///All content in a array is a number
+        return true;
+      } else {
+        return false;
+      }
+    }
+  } else {
+    return false;
+  }
+}
+
+// function checkForNull() {
+//   let sum = 0;
+//   let dg = arguments[0][0];
+//   let dg1 = arguments[0][1];
+//   if (arguments[0][0] == null && arguments[0][1] != null) {
+//     return Number(arguments[1]);
+//   } else if (arguments[0][0] != null && arguments[0][1] == null) {
+//     return Number(arguments[0]);
+//   }
+//   return sum;
+// }
+// let var1 = strAddMultArg("[***]\n1***2***3");
+// console.log(var1);
+
+// let var2 = strAddMultArg("//[2][3][u]\n1u52131");
+// console.log(var2);
+
+// var a = "23";
+// var b = "1005";
+// sum = strAddMultArg(a, b);
+// console.log(sum);
+
+// var a = null;
+// var b = null;
+// sum = strAddMultArg(a, b);
+// console.log(sum);
+
+// var a = "23";
+// var b = "10";
+// sum = strAddMultArg(a, b);
+// console.log(sum);
+
+sum = strAddMultArg("//[***]\n1***2***3");
+console.log(sum);

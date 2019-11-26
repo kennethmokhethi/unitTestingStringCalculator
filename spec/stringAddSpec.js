@@ -63,8 +63,8 @@ describe("A function that except string numbers and return the sum:Handles multi
     expect(sum).toBe(6);
   });
 
-  fit("Numbers as delimeters", () => {
-    sum = strAddMultArg("//[5]\n25252");
-    expect(sum).toBe(6);
+  it("Numbers as delimeters", () => {
+    sum = strAddMultArg("//[2][3][u]\n1u52131");
+    expect(sum).toBe(8);
   });
 });

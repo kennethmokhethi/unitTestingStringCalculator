@@ -1,3 +1,5 @@
+let signature = require("../src/stringAdd");
+
 //Testing the string function that accepts two parameters
 describe("A function that except string numbers and return the sum:Handles two numbers", () => {
   it("If both arguments are null,return the sum as 0", () => {

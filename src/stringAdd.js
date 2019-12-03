@@ -104,3 +104,5 @@ function extract_Nums(arr) {
   }
   return numArray1;
 }
+
+module.exports = signature;

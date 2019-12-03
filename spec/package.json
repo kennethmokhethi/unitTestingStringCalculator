@@ -1,0 +1,19 @@
+{
+  "name": "stringcalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "stringAddSpec.js",
+  "scripts": {
+    "test": "node stringAdd.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennethmokhethi/unitTestingStringCalculator.git"
+  },
+  "author": "kenneth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennethmokhethi/unitTestingStringCalculator/issues"
+  },
+  "homepage": "https://github.com/kennethmokhethi/unitTestingStringCalculator#readme"
+}
